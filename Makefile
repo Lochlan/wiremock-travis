@@ -6,6 +6,8 @@ all: wiremock-1.57-standalone.jar
 	curl http://foo.app/api/hello
 	curl --insecure https://localhost:8081/api/hello
 	curl --insecure https://foo.app/api/hello
+	curl http://foo.app/
+	curl http://foo.app/about/
 
 wiremock-1.57-standalone.jar:
 	wget http://repo1.maven.org/maven2/com/github/tomakehurst/wiremock/1.57/wiremock-1.57-standalone.jar

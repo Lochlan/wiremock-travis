@@ -1,8 +1,11 @@
 <VirtualHost *:80>
   ServerName foo.app
   ServerAlias foo.app
-  ProxyPass / http://localhost:8080/
-  ProxyPassReverse / http://localhost:8080/
+  ProxyPass /api http://localhost:8080/api
+  ProxyPassReverse /api http://localhost:8080/api
+
+  ProxyPass / http://www.lochlanmcintosh.com/
+  ProxyPassReverse / http://www.lochlanmcintosh.com/
 </VirtualHost>
 
 <VirtualHost *:443>
