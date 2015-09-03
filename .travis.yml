@@ -5,11 +5,12 @@ node_js:
 sudo: required
 install:
 - sudo apt-get update
-- sudo apt-get install apache2 libapache2-mod-fastcgi libapache2-mod-proxy-html
+- sudo apt-get install apache2 libapache2-mod-fastcgi libapache2-mod-proxy-html openssl
+- sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj "/C=US/ST=Oregon/L=Portland/O=Foo/CN=foo.app" -keyout /etc/apache2/certificate.key -out /etc/apache2/certificate.crt
 # configure apache virtual hosts
 - sudo cp -f travis-ci-apache /etc/apache2/sites-available/default
 - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
-- sudo a2enmod proxy proxy_http
+- sudo a2enmod proxy proxy_http ssl
 - sudo service apache2 restart
 script:
 - make

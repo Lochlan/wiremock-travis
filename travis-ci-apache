@@ -4,3 +4,17 @@
   ProxyPass / http://localhost:8080/
   ProxyPassReverse / http://localhost:8080/
 </VirtualHost>
+
+<VirtualHost *:443>
+  ServerName foo.app
+
+  SSLEngine on
+  SSLProxyEngine On
+  SSLCertificateFile /etc/apache2/certificate.crt
+  SSLCertificateKeyFile /etc/apache2/certificate.key
+
+  ProxyRequests Off
+  ProxyPreserveHost On
+  ProxyPass / https://localhost:8081/
+  ProxyPassReverse / https://localhost:8081/
+</VirtualHost>
