@@ -4,3 +4,4 @@ all:
 	java -jar wiremock-1.57-standalone.jar &
 	sleep 5 # wait for wiremock to start
 	curl http://localhost:8080/api/hello
+	curl http://foo.app/api/hello

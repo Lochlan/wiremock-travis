@@ -3,8 +3,20 @@ node_js:
 - '0.12'
 
 sudo: required
+install:
+- sudo apt-get update
+- sudo apt-get install apache2 libapache2-mod-fastcgi libapache2-mod-proxy-html
+# configure apache virtual hosts
+- sudo cp -f travis-ci-apache /etc/apache2/sites-available/default
+- sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
+- sudo a2enmod proxy proxy_http
+- sudo service apache2 restart
 script:
 - make
+
+addons:
+  hosts:
+    - foo.app
 
 notifications:
   email: false
