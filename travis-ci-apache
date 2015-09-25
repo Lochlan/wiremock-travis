@@ -1,6 +1,5 @@
 <VirtualHost *:80>
   ServerName foo.app
-  ServerAlias foo.app
   ProxyPass /api http://localhost:8080/api
   ProxyPassReverse /api http://localhost:8080/api
 
