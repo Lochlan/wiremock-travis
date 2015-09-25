@@ -1,6 +1,10 @@
+WIREMOCK-VERSION=1.57
+WIREMOCK=wiremock-$(WIREMOCK-VERSION)-standalone.jar
 
-all: wiremock-1.57-standalone.jar
-	java -jar wiremock-1.57-standalone.jar --https-port 8081 &
+all: $(WIREMOCK)
+	@ if ! ps -ewwo pid,args | grep [j]ava\ -jar\ $(WIREMOCK)\ --https-port\ 8081; then\
+		make runserver &\
+	fi
 	sleep 5 # wait for wiremock to start
 	curl http://localhost:8080/api/hello
 	curl http://foo.app/api/hello
@@ -9,5 +13,8 @@ all: wiremock-1.57-standalone.jar
 	curl http://foo.app/
 	curl http://foo.app/about/
 
-wiremock-1.57-standalone.jar:
-	wget http://repo1.maven.org/maven2/com/github/tomakehurst/wiremock/1.57/wiremock-1.57-standalone.jar
+runserver:
+	java -jar $(WIREMOCK) --https-port 8081
+
+$(WIREMOCK):
+	wget http://repo1.maven.org/maven2/com/github/tomakehurst/wiremock/$(WIREMOCK-VERSION)/$(WIREMOCK)
