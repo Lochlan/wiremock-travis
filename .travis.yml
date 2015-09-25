@@ -18,6 +18,7 @@ script:
 addons:
   hosts:
     - foo.app
+    - api.stripe.com
 
 notifications:
   email: false

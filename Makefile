@@ -13,6 +13,7 @@ all: $(WIREMOCK)
 	curl --insecure https://foo.app/api/hello
     # POST
 	curl -X post --insecure https://foo.app/api/test
+	curl -X post --insecure https://api.stripe.com/api/test
 	# "Fallback" server
 	curl http://foo.app/
 	curl http://foo.app/about/
