@@ -1,0 +1,10 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/api/test"
+    },
+    "response": {
+        "status": 200,
+        "body": "This is a test\n"
+    }
+}

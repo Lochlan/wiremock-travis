@@ -10,6 +10,7 @@ all: $(WIREMOCK)
 	curl http://foo.app/api/hello
 	curl --insecure https://localhost:8081/api/hello
 	curl --insecure https://foo.app/api/hello
+	curl -X post --insecure https://foo.app/api/test
 	curl http://foo.app/
 	curl http://foo.app/about/
 
