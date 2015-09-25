@@ -6,11 +6,14 @@ all: $(WIREMOCK)
 		make runserver &\
 	fi
 	sleep 5 # wait for wiremock to start
+    # GET
 	curl http://localhost:8080/api/hello
 	curl http://foo.app/api/hello
 	curl --insecure https://localhost:8081/api/hello
 	curl --insecure https://foo.app/api/hello
+    # POST
 	curl -X post --insecure https://foo.app/api/test
+	# "Fallback" server
 	curl http://foo.app/
 	curl http://foo.app/about/
 
